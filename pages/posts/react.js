@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
-//import React from 'react';
-import ReactDOM from 'react-dom';
+//import React, { Component } from 'react'
+import React, { useEffect } from 'react';
+import ReactDOM, { render } from 'react-dom';
+import dynamic from 'next/dynamic';
 //import '../_app.js/index.css';
 
 
 
-
+export default function def(){
+  return <Game />;
+}
 
 class Name extends React.Component {
    constructor(props){
@@ -149,11 +152,10 @@ class Square extends React.Component {
   }
   
   // ========================================
-  
-    ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
-  );
+
+    if(process.browser){
+    //ReactDOM.render(<Game />,document.getElementById('root'));
+    }
 
 
   function calculateWinner(squares) {
