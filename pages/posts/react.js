@@ -2,12 +2,13 @@
 import React, { useEffect } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import dynamic from 'next/dynamic';
+// import style from './'
 //import '../_app.js/index.css';
 
 
 
 export default function def(){
-  return <Game />;
+  return <Game/>;
 }
 
 class Name extends React.Component {
@@ -153,8 +154,8 @@ class Square extends React.Component {
   
   // ========================================
 
-    if(process.browser){
-    //ReactDOM.render(<Game />,document.getElementById('root'));
+    if(typeof window == 'object'){
+     // ReactDOM.render(<Game />,document.getElementById('root'));
     }
 
 
