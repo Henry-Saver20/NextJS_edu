@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 // import style from './'
 //import '../_app.js/index.css';
 
@@ -41,12 +42,15 @@ class Name extends React.Component {
  }
   render() {
     return (
+    <div>
+      <h2><a href='/'>Return to home</a></h2>
       <div>
         <h1 style={{color:this.state.c}}>Henry Saver</h1> 
         <button onClick={() => this.handleClick(0)}>Blue</button>
         <button onClick={() => this.handleClick(1)}>Red</button>
         <button onClick={() => this.handleClick(2)}>Green</button>
       </div>
+    </div>
     );
   }
 }
