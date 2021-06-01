@@ -3,13 +3,21 @@ import React, { useEffect } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Head from 'next/head';
 // import style from './'
 //import '../_app.js/index.css';
 
 
 
 export default function def(){
-  return <Game/>;
+  return (
+    <>
+      <head>
+        <title>Main Page</title>
+      </head>
+      <Game/>
+    </>
+  );
 }
 
 class Name extends React.Component {

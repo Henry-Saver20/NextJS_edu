@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Welcome!</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -19,6 +19,7 @@ export default function Home() {
         <div className="grid">
           <Icomp/>
         </div>
+        <h3>Hey thats me!</h3>
       </main>
 
       <footer>
@@ -181,7 +182,11 @@ export default function Home() {
   )
 }
 const Icomp = () => (
-  <Image src="/images/me.jpeg" width={144} height={144}/>
+  <>
+    <div>
+      <Image src="/images/me.jpeg" width={144} height={170}/>
+    </div>
+  </>
 )
 
 
