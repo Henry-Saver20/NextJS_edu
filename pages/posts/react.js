@@ -52,6 +52,9 @@ class Name extends React.Component {
     return (
     <div>
       <h2><a href='/'>Return to home</a></h2>
+      <h2>Posts Stream Here:</h2>
+      <h3><a href='firstPage'>My First Blog Post</a></h3>
+      <p>May 31, 2021</p>
       <div>
         <h1 style={{color:this.state.c}}>Henry Saver</h1> 
         <button onClick={() => this.handleClick(0)}>Blue</button>
@@ -159,6 +162,7 @@ class Square extends React.Component {
                 <button onClick={() => this.handleBtn()}>Restart</button>
           </div>
         </div>
+        <h2><a href='adminTest'>Admin Test Page</a></h2>
       </div>
       );
     }
