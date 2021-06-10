@@ -13,7 +13,7 @@ export default function first()
                 <h3>May 31, 2021</h3>
                 <p>This is a test for a blog application. Here is where some interesting writing would go!</p>
 
-                <h2><a href='react'>Return to main</a></h2>
+                <h2><a href='../react'>Return to main</a></h2>
             </div>
         </Layout>
     );

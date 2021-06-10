@@ -13,7 +13,7 @@ export default function Home() {
       <main>
         <h1>Welcome to my first NextJS application!</h1>
         <h1 className="title">
-          Come check <a href="posts/react">this</a> out!
+          Come check <a href="react">this</a> out!
         </h1>
 
         <div className="grid">
