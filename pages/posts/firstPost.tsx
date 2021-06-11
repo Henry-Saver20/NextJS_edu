@@ -8,7 +8,7 @@ export default function first()
             <Head>
                 <title>First Post</title>
             </Head>
-            <div class="container">
+            <div className="container">
                 <h1>First Blog Post</h1>
                 <h3>May 31, 2021</h3>
                 <p>This is a test for a blog application. Here is where some interesting writing would go!</p>
