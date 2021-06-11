@@ -15,6 +15,9 @@ export default function Home() {
         <h1 className="title">
           Come check <a href="react">this</a> out!
         </h1>
+        <h1>
+          <a href="comms">Chat Prototype</a>
+        </h1>
 
         <div className="grid">
           <Icomp/>
