@@ -2,6 +2,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 
+const Icomp = () => (
+  <>
+    <div>
+      <Image src="/images/me.jpeg" width={144} height={170}/>
+    </div>
+  </>
+)
 export default function Home () {
   return (
     <div className="container">
@@ -184,10 +191,3 @@ export default function Home () {
     </div>
   )
 }
-const Icomp = () => (
-  <>
-    <div>
-      <Image src="/images/me.jpeg" width={144} height={170}/>
-    </div>
-  </>
-)

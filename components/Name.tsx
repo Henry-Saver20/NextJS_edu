@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react'
 
+const Name = () => {
+  const [state, setState] = useState({ c: '' })
+  const handleClick = (i) => (i === 0)
+    ? setState({ c: 'blue' })
+    : (i === 1)
+        ? setState({ c: 'red' })
+        : (i === 2)
+            ? setState({ c: 'green' })
+            : null
 
-const Name = () => {                                
-    const [state, setState] = useState({ c: '' })
-    const handleClick = (i) => (i === 0)
-      ? setState({ c: 'blue' })
-      : (i === 1)
-          ? setState({ c: 'red' })
-          : (i === 2)
-              ? setState({ c: 'green' })
-              : null   
-       
-    return (
+  return (
       <div>
         <h2><a href='/'>Return to home</a></h2>
         <h2>Posts Stream Here:</h2>
@@ -23,8 +22,8 @@ const Name = () => {
           <button onClick={() => handleClick(1)}>Red</button>
           <button onClick={() => handleClick(2)}>Green</button>
         </div>
-      </div>      
-    )             
-  }
+      </div>
+  )
+}
 
-  export default Name
+export default Name
