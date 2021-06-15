@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image';
+import Image from 'next/image'
+import React from 'react'
 
-export default function Home() {
+export default function Home () {
   return (
     <div className="container">
       <Head>
@@ -191,5 +191,3 @@ const Icomp = () => (
     </div>
   </>
 )
-
-
