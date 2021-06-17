@@ -13,7 +13,6 @@ export default function comms () {
             <div><button onClick={() => handleClick()}>Add Participant</button></div>
             <div className="container">
                 <ChatWindow/>
-                <ChatWindow/>
             </div>
         </div>
   )
