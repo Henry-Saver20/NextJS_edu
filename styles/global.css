@@ -56,3 +56,25 @@ body {
     justify-content: center;
   }
   
+
+
+
+  /* For the chat app */
+#msgHolder {
+  border-width: 2px;
+  border-color: blue;
+  border: 2px solid blue;
+  background: lightblue;
+  height: 50vh;
+  width: 50vw;
+  overflow: scroll;
+}
+.cLine {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.cLine span {
+  background: white;
+  border-radius: 35px;
+  padding: 2px
+  
+}
