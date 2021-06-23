@@ -1,5 +1,8 @@
 import '../styles/global.css'
+import React from 'react'
 
-export default function MyApp({Component, pageProps}){
-    return <Component {...pageProps} />
+//import http = require('http').createServer().listen(3000)
+
+export default function MyApp ({ Component, pageProps }) {
+  return <Component {...pageProps} />
 }

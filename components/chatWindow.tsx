@@ -7,6 +7,8 @@ const ChatWindow = () => {
 
   function updateList () {
     setList(mList => [...mList, fullMsg])
+    console.log(mList.values)
+    console.log(fullMsg)
   }
   function handleClick () {
     if (document.getElementById('name').value !== '') { document.getElementById('name').readOnly = true }
@@ -23,14 +25,15 @@ const ChatWindow = () => {
     const listener = event => {
       if (event.code === 'Enter' || event.code === 'NumpadEnter') {
         handleClick()
-        event.preventDefault()
+        console.log('pressed')
+        // event.preventDefault()
       }
     }
-    document.addEventListener('keydown', listener)
+    document.addEventListener('keyup', listener)
     return () => {
-      document.removeEventListener('keydown', listener)
+      document.removeEventListener('keyup', listener)
     }
-  }, [])
+  }, [handleClick])
 
   return (
         <div className='container'>
