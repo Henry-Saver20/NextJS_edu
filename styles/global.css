@@ -3,8 +3,13 @@ body {
     margin: 20px;
   }
   
+  div {
+    overflow: hidden;
+  }
+
   ol, ul {
     padding-left: 30px;
+    overflow: hidden;
   }
   
   .board-row:after {
@@ -54,8 +59,14 @@ body {
     grid-gap: 10px;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
-  
+  /* .container span { 
+    display:inline;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 2px;
+  } */
 
 
 
@@ -67,7 +78,9 @@ body {
   background: lightblue;
   height: 50vh;
   width: 50vw;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 25px;
 }
 .cLine {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -77,4 +90,12 @@ body {
   border-radius: 35px;
   padding: 2px
   
+}
+#subBtn {
+  background-color: lightskyblue;
+  height: 40px;
+  width: 75px;
+  border-radius: 20px;
+  justify-self: right;
+  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
 }

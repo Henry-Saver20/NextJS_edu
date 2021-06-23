@@ -48,7 +48,7 @@ const ChatWindow = () => {
             </ul>
           </div>
           <textarea id="m" placeholder="Messege Here"></textarea>
-          <button id='subBtn' onClick={() => handleClick()}>Submit</button>
+          <span><button id='subBtn' onClick={() => handleClick()}>Send</button></span>
         </div>
   )
 }
