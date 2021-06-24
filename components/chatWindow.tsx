@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { FC, useState, useEffect, useRef, useCallback } from 'react'
 import ChatLine from '../components/chatLine'
 import socketIOClient from 'socket.io-client'
 
@@ -6,7 +6,7 @@ interface interMsg {
   msg: string;
   name: string;
 }
-const ChatWindow = () => {
+const ChatWindow: FC = () => {
   const [mList, setList] = useState<interMsg[]>([])
   const [msg, setMsg] = useState('')
   const [name, setName] = useState('')
@@ -28,28 +28,33 @@ const ChatWindow = () => {
   //   document.getElementById('m').value = ''
   // }
 
-  const sendMessage = async () => {
+  const sendMessage = useCallback(async () => {
     if (msg) {
       const message: interMsg = {
         msg,
         name
       }
-      const res = await fetch('/api/msgHandler', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(message)
-      })
-      if (res.ok) {
-        setMsg('')
-        document.getElementById('m').value = ''
-        document.getElementById('name').style.visibility = 'hidden'
-        document.getElementById('nameBanner').style.visibility = 'visible'
+      try {
+        const resp = await window.fetch('/api/msgHandler', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(message)
+        })
+        if (resp.ok) {
+          setMsg('')
+          document.getElementById('m').value = ''
+          document.getElementById('name').style.visibility = 'hidden'
+          document.getElementById('nameBanner').style.visibility = 'visible'
+        }
+      } catch (e) {
+        console.error(e)
       }
     }
     inputRef?.current?.focus()
-  }
+  }, [msg, name])
+
   useEffect(() => {
     const listener = event => {
       if (event.code === 'Enter' || event.code === 'NumpadEnter') {
@@ -64,7 +69,7 @@ const ChatWindow = () => {
     }
   }, [sendMessage])
 
-  useEffect((): any => {
+  useEffect(() => {
     const socket = socketIOClient.connect(process.env.BASE_URL, {
       path: '/api/socketio'
     })
@@ -72,8 +77,8 @@ const ChatWindow = () => {
       console.log('Socket has been connected :D - ID: ', socket.id)
     })
     socket.on('message', (message: interMsg) => {
-      mList.push(message)
-      setList([...mList])
+      // setList([...mList, message])
+      setList(mList.concat([message]))
       console.log(mList)
     })
     if (socket) return () => socket.disconnect()
