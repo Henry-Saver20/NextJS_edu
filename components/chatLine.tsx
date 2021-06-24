@@ -1,6 +1,15 @@
-import React, { useState } from 'react'
+import React, { FC } from 'react'
 
-const ChatLine = (props) => {
-  return (<p className='cLine' key={props.id}><span>{props.name}: {props.m}</span></p>)
+type ChatLineProps = {
+  id : string
+  name: string
+  m: string
 }
+
+const ChatLine : FC<ChatLineProps> = ({
+  id = 'wtf',
+  name = 'anon',
+  m = '<no message>'
+}: ChatLineProps) => (<p className='cLine' key={id}><span>{name}: {m}</span></p>)
+
 export default ChatLine
