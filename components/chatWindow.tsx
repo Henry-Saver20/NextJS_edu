@@ -34,14 +34,14 @@ const ChatWindow = () => {
         msg,
         name
       }
-      const resp = await fetch('/api/msgHandler', {
+      const res = await fetch('/api/msgHandler', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(message)
       })
-      if (resp.ok) {
+      if (res.ok) {
         setMsg('')
         document.getElementById('m').value = ''
         document.getElementById('name').style.visibility = 'hidden'
