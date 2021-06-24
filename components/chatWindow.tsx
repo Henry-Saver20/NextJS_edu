@@ -41,10 +41,11 @@ const ChatWindow = () => {
         },
         body: JSON.stringify(message)
       })
-      // reset field if OK
       if (resp.ok) {
         setMsg('')
         document.getElementById('m').value = ''
+        document.getElementById('name').style.visibility = 'hidden'
+        document.getElementById('nameBanner').style.visibility = 'visible'
       }
     }
     inputRef?.current?.focus()
@@ -81,6 +82,7 @@ const ChatWindow = () => {
   return (
         <div className='container'>
           <input id="name" placeholder="Name Here" onChange={(n) => { setName(n.target.value) }}></input>
+          <h2 id='nameBanner'>Current User: {name}</h2>
           <div id='msgHolder'>
             <ul>
               {mList.map(user => {
