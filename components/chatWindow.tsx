@@ -1,30 +1,58 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ChatLine from '../components/chatLine'
+import socketIOClient from 'socket.io-client'
 
+interface interMsg {
+  msg: string;
+  name: string;
+}
 const ChatWindow = () => {
-  const [mList, setList] = useState([])
-  const fullMsg = ({ id: 0, t: '', n: '' })
+  const [mList, setList] = useState<interMsg[]>([])
+  const [msg, setMsg] = useState('')
+  const [name, setName] = useState('')
+  const inputRef = useRef(null)
 
-  function updateList () {
-    setList(mList => [...mList, fullMsg])
-    console.log(mList.values)
-    console.log(fullMsg)
-  }
-  function handleClick () {
-    if (document.getElementById('name').value !== '') { document.getElementById('name').readOnly = true }
-    console.log('running')
-    fullMsg.n = document.getElementById('name').value
-    fullMsg.t = document.getElementById('m').value
-    fullMsg.id = new Date().getTime()
-    console.log(fullMsg.id)
-    updateList()
-    document.getElementById('m').value = ''
-  }
+  // function updateList () {
+  //   setList(mList => [...mList, fullMsg])
+  //   console.log(mList.values)
+  //   console.log(fullMsg)
+  // }
+  // function handleClick () {
+  //   if (document.getElementById('name').value !== '') { document.getElementById('name').readOnly = true }
+  //   console.log('running')
+  //   fullMsg.n = document.getElementById('name').value
+  //   fullMsg.t = document.getElementById('m').value
+  //   fullMsg.id = new Date().getTime()
+  //   console.log(fullMsg.id)
+  //   updateList()
+  //   document.getElementById('m').value = ''
+  // }
 
+  const sendMessage = async () => {
+    if (msg) {
+      const message: interMsg = {
+        msg,
+        name
+      }
+      const resp = await fetch('/api/msgHandler', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(message)
+      })
+      // reset field if OK
+      if (resp.ok) {
+        setMsg('')
+        document.getElementById('m').value = ''
+      }
+    }
+    inputRef?.current?.focus()
+  }
   useEffect(() => {
     const listener = event => {
       if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-        handleClick()
+        sendMessage()
         console.log('pressed')
         // event.preventDefault()
       }
@@ -33,22 +61,37 @@ const ChatWindow = () => {
     return () => {
       document.removeEventListener('keyup', listener)
     }
-  }, [handleClick])
+  }, [sendMessage])
+
+  useEffect((): any => {
+    const socket = socketIOClient.connect(process.env.BASE_URL, {
+      path: '/api/socketio'
+    })
+    socket.on('connect', () => {
+      console.log('Socket has been connected :D - ID: ', socket.id)
+    })
+    socket.on('message', (message: interMsg) => {
+      mList.push(message)
+      setList([...mList])
+      console.log(mList)
+    })
+    if (socket) return () => socket.disconnect()
+  }, [mList])
 
   return (
         <div className='container'>
-          <input id="name" placeholder="Name Here"></input>
+          <input id="name" placeholder="Name Here" onChange={(n) => { setName(n.target.value) }}></input>
           <div id='msgHolder'>
             <ul>
               {mList.map(user => {
                 return (
-                    <ChatLine key={user.id} name={user.n} m={user.t}/>
+                    <ChatLine key={user.id} name={user.name} m={user.msg}/>
                 )
               })}
             </ul>
           </div>
-          <textarea id="m" placeholder="Messege Here"></textarea>
-          <span><button id='subBtn' onClick={() => handleClick()}>Send</button></span>
+          <textarea id="m" placeholder="Messege Here" onChange={(e => { setMsg(e.target.value) })}></textarea>
+          <span><button id='subBtn' onClick={sendMessage}>Send</button></span>
         </div>
   )
 }
